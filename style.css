@@ -1,0 +1,65 @@
+html,
+body {
+    height: 100%;
+}
+
+table.main-table {
+    border-collapse: separate;
+    border-spacing: 1px;
+    /* text-align: center; */
+    line-height: 1.5;
+    margin: 20px 10px;
+}
+
+/* No. */
+table.main-table th.num-col {
+    width: 100px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background: #88191991 ;
+}
+table.main-table td.num-col {
+    width: 100px;
+    padding: 10px;
+    text-align: center;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+}
+
+/* 会社名, 住所 */
+table.main-table th.contents-col {
+    width: 500px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background: #88191991 ;
+}
+table.main-table td.contents-col {
+    width: 500px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+}
+
+/* 料金 */
+table.main-table th.summary-col {
+    width: 100px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background: #88191991 ;
+}
+table.main-table td.summary-col {
+    width: 100px;
+    padding: 10px;
+    text-align: right;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+}
