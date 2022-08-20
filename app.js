@@ -4,6 +4,9 @@ const readFile = function(evt) {
         const FILE_READER = new FileReader();
         let output = [];
         let costArr = [];
+        let theadStr = '';
+
+        FILE_READER.readAsText(FILE, "shift-jis");
         FILE_READER.onload = function(e) { 
             const CONTENTS = e.target.result;
             const ROWS = CONTENTS.split("\n")
@@ -29,22 +32,25 @@ const readFile = function(evt) {
                       cost;
 
                 if(cnt == 1){
-                    let theadStr = `<thead>
+                    theadStr = `<table cellpadding="0" cellspacing="0" border="0">
+                                    <thead>
                                         <tr>
                                             <th scope="cols" class="num-col">No.</th>
                                             <th scope="cols" class="contents-col">${data[0]}</th>
                                             <th scope="cols" class="contents-col">${data[1]}</th>
                                             <th scope="cols" class="summary-col">料金</th>
                                         </tr>
-                                    </thead>`;
-                    output.push(theadStr);
+                                    </thead>
+                                </table>`;
                 } else if(data[0] && data[1]){
-                    let contentsStr=`<tr>
-                                        <td class="num-col">${cnt-1}</td>
-                                        <td class="contents-col">${data[0]}</td>
-                                        <td class="contents-col">${data[1]}</td>
-                                        <td class="summary-col">${cost}円</td>
-                                    </tr>`
+                    let contentsStr=`<tbody>
+                                        <tr>
+                                            <td class="num-col">${cnt-1}</td>
+                                            <td class="contents-col">${data[0]}</td>
+                                            <td class="contents-col">${data[1]}</td>
+                                            <td class="summary-col">${cost}円</td>
+                                        </tr>
+                                    </tbody>`
                     output.push(contentsStr);
                     costArr.push(cost);
                 };
@@ -60,12 +66,11 @@ const readFile = function(evt) {
                         </tr>`;
             output.push(summary);
 
-            output=`<table class="main-table">
-                        <tbody>${output.join("")}</tbody>
-                    </table>`;
-            document.getElementById("resultContainer").innerHTML=output;
-        }
-        FILE_READER.readAsText(FILE, "shift-jis");
+            output=`<table cellpadding="0" cellspacing="0" border="0"> ${output.join("")} </table>`;
+            document.getElementById("tblHeader").innerHTML = theadStr;
+            document.getElementById("resultContainer").innerHTML = output;
+            document.getElementById("fileName").value = document.getElementById("fileload").value;
+        };
     } else { 
         alert("Failed to load file");
     }

@@ -1,65 +1,102 @@
-html,
-body {
-    height: 100%;
+body{
+    background: -webkit-linear-gradient(left, rgba(222, 213, 170, 1) 35%, rgba(198, 219, 179, 1) 65%, rgba(175, 223, 196, 1));
+    background: linear-gradient(to right, rgba(222, 213, 170, 1) 35%, rgba(198, 219, 179, 1) 65%, rgba(175, 223, 196, 1));
+
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 5% 10% 0% 10%;
+}
+section{
+    margin: 0px 100px 0px 100px;
 }
 
-table.main-table {
-    border-collapse: separate;
-    border-spacing: 1px;
-    /* text-align: center; */
-    line-height: 1.5;
-    margin: 20px 10px;
-}
-
-/* No. */
-table.main-table th.num-col {
-    width: 100px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-    background: #88191991 ;
-}
-table.main-table td.num-col {
-    width: 100px;
-    padding: 10px;
+/* Table styles */
+h1{
+    font-size: 30px;
+    font-weight: 300;
     text-align: center;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #eee;
+    margin-bottom: 15px;
+}
+table{
+    width:100%;
+    table-layout: fixed;
+}
+.tbl-header{
+    height:50px;
+    background-color: rgba(255,255,255,0.3);
+}
+.tbl-content{
+    height: 500px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+th{
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 500;
+    font-size: 16px;
+}
+td{
+    padding: 15px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 14px;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+.made-by {
+    margin-top: 40px;
+    padding: 10px;
+    clear: left;
+    text-align: center;
+    font-size: 12px;
+    font-family: arial;
 }
 
-/* 会社名, 住所 */
-table.main-table th.contents-col {
-    width: 500px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-    background: #88191991 ;
-}
-table.main-table td.contents-col {
-    width: 500px;
-    padding: 10px;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #eee;
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
 }
 
-/* 料金 */
-table.main-table th.summary-col {
-    width: 100px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-    background: #88191991 ;
+/* file input box design */
+.filebox .upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 200px;
+    color: #999999;
+    margin-bottom: 5px;
 }
-table.main-table td.summary-col {
-    width: 100px;
-    padding: 10px;
-    text-align: right;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #eee;
+.filebox label {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0px 0px 5px 10px;
+    padding: 10px 20px 0px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #3e8bff;
+    font-size: 0.95em;
+    height: 33px;
+    border-radius: 2.5em;
+    transition: 0.2s;
+}
+.filebox label:hover {
+    box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.2);
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
 }

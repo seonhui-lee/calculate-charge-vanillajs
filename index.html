@@ -4,15 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Calculate Charge</title>
 </head>
 <body>
-    <label for="fileload">Spreadsheet</label>
-    <input id="fileload" type="file" 
-        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
-    />
-    <div id="resultContainer" class="container"></div>
+    <section>
+        <h1>Calculate charge</h1>
+
+        <div class="filebox">
+            <input id="fileName" class="upload-name" value="添付ファイル" placeholder="添付ファイル" readonly>
+            <label for="fileload">ファイルを選択</label> 
+            <input id="fileload" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  >
+        </div>
+
+        <div id="tblHeader" class="tbl-header"></div>
+        <div id="resultContainer" class="tbl-content"></div>
+    </section>
+    
+    <!-- follow me template -->
+    <div class="made-by"> Made by seon-hui 🥰 </div>
     <script type="text/javascript" language="JavaScript" src="app.js"></script>
 </body>
 </html>
