@@ -1,15 +1,15 @@
-const readFile = function(evt) {
+const readFile = (evt) => {
     const FILE = evt.target.files[0]; 
     if (FILE) {
         const FILE_READER = new FileReader();
         let output = [];
-        let costArr = [];
         let theadStr = '';
 
         FILE_READER.readAsText(FILE, "shift-jis");
         FILE_READER.onload = function(e) { 
             const CONTENTS = e.target.result;
-            const ROWS = CONTENTS.split("\n")
+            const ROWS = CONTENTS.split("\n");
+            let contentsStr ="";
             let cnt = 0
             let amount = 0;
             ROWS.forEach(row => {
@@ -33,6 +33,12 @@ const readFile = function(evt) {
 
                 if(cnt == 1){
                     theadStr = `<table cellpadding="0" cellspacing="0" border="0">
+                                    <colgroup>
+                                        <col span="1" style="width: 10%;">
+                                        <col span="1" style="width: 40%;">
+                                        <col span="1" style="width: 40%;">
+                                        <col span="1" style="width: 10%;">
+                                    </colgroup>
                                     <thead>
                                         <tr>
                                             <th scope="cols" class="num-col">No.</th>
@@ -43,37 +49,41 @@ const readFile = function(evt) {
                                     </thead>
                                 </table>`;
                 } else if(data[0] && data[1]){
-                    let contentsStr=`<tbody>
-                                        <tr>
-                                            <td class="num-col">${cnt-1}</td>
-                                            <td class="contents-col">${data[0]}</td>
-                                            <td class="contents-col">${data[1]}</td>
-                                            <td class="summary-col">${cost}円</td>
-                                        </tr>
-                                    </tbody>`
-                    output.push(contentsStr);
-                    costArr.push(cost);
+                    contentsStr += `<tr>
+                                        <td class="num-col">${cnt-1}</td>
+                                        <td class="contents-col">${data[0]}</td>
+                                        <td class="contents-col">${data[1]}</td>
+                                        <td class="summary-col">${cost}円</td>
+                                    </tr>`
+                    amount += cost;
                 };
-            });
-
-            costArr.forEach(cost => {
-                amount += cost;
             });
 
             let summary=`<tr>
                             <td colspan="3">合計</td>
                             <td>${amount}円</td>
                         </tr>`;
+            output.push(contentsStr);
             output.push(summary);
 
-            output=`<table cellpadding="0" cellspacing="0" border="0"> ${output.join("")} </table>`;
-            document.getElementById("tblHeader").innerHTML = theadStr;
-            document.getElementById("resultContainer").innerHTML = output;
+            output=`<table cellpadding="0" cellspacing="0" border="0"> 
+                        <colgroup>
+                            <col span="1" style="width: 10%;">
+                            <col span="1" style="width: 40%;">
+                            <col span="1" style="width: 40%;">
+                            <col span="1" style="width: 10%;">
+                        </colgroup>
+                        <tbody>
+                            ${output.join("")} 
+                        </tbody>
+                    </table>`;
+            document.getElementById("tblHeader").insertAdjacentHTML("afterbegin", theadStr);
+            document.getElementById("resultContainer").insertAdjacentHTML("afterbegin", output);
             document.getElementById("fileName").value = document.getElementById("fileload").value;
         };
     } else { 
         alert("Failed to load file");
-    }
-}
+    };
+};
 
 document.getElementById('fileload').addEventListener('change', readFile);
